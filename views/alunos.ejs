@@ -1,0 +1,58 @@
+<header class="header">
+  <a href="/" class="logo"></a>
+    <span>Certificados</span>
+    <a href="logout"><button class="logout-btn">Logout</button></a>
+</header>
+
+<a href="?page=<%=prev%>" <%if (atual == 1) {%> <%='style=display:none;'%><%}%>> <i class="material-icons paginate page-left">arrow_back_ios</i></a>
+<a href="?page=<%=next%>" <%if (atual == limit) {%> <%='style=display:none;'%><%}%>> <i class="material-icons paginate page-right">arrow_forward_ios</i></a>
+
+<form id="form_aluno" action="" method="post">
+  <input id="nome_aluno" name="aluno" type="text" style="display: none;">
+</form>
+
+<form id="form-atualizar" action="" method="post">
+  <input id="nome_aluno" name="nome_aluno" type="text" style="display: none;">
+</form>
+
+<section class="table">
+    <button class="btn-add btn-add-aluno">
+      <span>Adicionar</span>
+      <i class="material-icons">add_circle</i>
+    </button>
+    <%if(url!=='/' && url !== '/?page=1') {%>
+    
+    <a href="/"><button class="btn-back" id="btn-back">
+      
+      <i class="material-icons">arrow_back</i>
+    </button></a>
+    <%}%>
+    <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Data de criação</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        <%if(alunos){%>
+        <%for (i in alunos){%>
+          <tr>
+            <td><%=alunos[i].nome%></td>
+            
+            <td>15 de julho de 2019</td>
+            <td>
+                  <i class="material-icons btn-edit" 
+                  id_aluno="<%=alunos[i].id%>"
+                  nome="<%=alunos[i].nome%>" 
+                  
+                  >edit</i>
+                  <i class="material-icons btn-delete" value="<%=alunos[i].id%>">delete</i>
+              </td>
+          </tr>
+          <%}%>
+          <%}%>
+        </tbody>
+      </table>
+</section>

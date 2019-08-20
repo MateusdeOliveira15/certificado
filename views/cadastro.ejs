@@ -1,0 +1,14 @@
+<div class="login">
+    <% if(msg) {%>
+        <div class="alert-error"><%=msg%></div>
+    <% }%>
+    <form action="/cadastro" method="POST">
+        <span class="login-title login-item">CADASTRO</span>
+        <input class="login-input login-item" name="usuario" type="text" placeholder="Nome de Usuário" required/>
+        <input class="login-input login-item" name="senha" type="password" placeholder="Senha" required/>
+        <input class="login-input login-item" name="confirmarSenha" type="password" placeholder="Confirmar senha"/>
+        <span class="link"><a href="login">Já é casastrado?</a></span>
+        <button type="submit" class="login-btn">Cadastrar</button>
+    </form>  
+          
+</div>

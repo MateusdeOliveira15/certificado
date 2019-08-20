@@ -1,0 +1,79 @@
+
+<header class="header">
+  <a href="/" class="logo"></a>
+    <span>Certificados</span>
+    <a href="logout"><button class="logout-btn">Logout</button></a>
+</header>
+
+<a href="?page=<%=prev%>" <%if (atual == 1) {%> <%='style=display:none;'%><%}%>> <i class="material-icons paginate page-left">arrow_back_ios</i></a>
+<a href="?page=<%=next%>" <%if (atual == limit) {%> <%='style=display:none;'%><%}%>> <i class="material-icons paginate page-right">arrow_forward_ios</i></a>
+<form id="form" action="" method="post">
+  <input id="nome_lote" name="nome_lote" type="text" style="display: none;">
+</form>
+
+<form id="form-atualizar" action="" method="post">
+  <input id="nome_lote" name="nome_lote" type="text" style="display: none;">
+</form>
+
+<section class="table">
+    <button class="btn-add" id="btn-add">
+      <span>Adicionar</span>
+      <i class="material-icons">add_circle</i>
+    </button>
+    
+    <%if(url!=='/' && url !== '/?page=1') {%>
+    
+    <a href="/"><button class="btn-back" id="btn-back">
+      
+      <i class="material-icons">arrow_back</i>
+    </button></a>
+    <%}%>
+    <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Quantidade de alunos</th>
+            <th>Data de criação</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        <%if(lotes){%>
+          <%for (i in lotes) {%>
+            <tr>
+              <span id="id_lote" style="display: none;"><%=lotes[i].id%></span>
+              <span id="titulo_lote" style="display: none;"><%=lotes[i].titulo%></span>
+              <span id="data_realizacao_lote" style="display: none;"><%=lotes[i].data_realizacao%></span>
+              <span id="carga_horaria_lote" style="display: none;"><%=lotes[i].carga_horaria%></span>
+              
+              <td><a href="lote/<%=lotes[i].id%>"><%=lotes[i].nome%></a></td>
+              <td>
+                <%=lotes[i].alunos.length%>
+              </td>
+              <td><%=lotes[i].createdAt%></td>
+              <td>
+                <form id="form-pdf-lote-<%=lotes[i].id%>" lote="<%=lotes[i].id%>" action="pdf" method="POST">
+                  <input id="" name="id_lote" type="text" style="display: none;" value="<%=lotes[i].id%>">
+                  <input id="" name="titulo" type="text" style="display: none;" value="<%=lotes[i].titulo%>">
+                  <input id="" name="carga" type="text" style="display: none;" value="<%=lotes[i].carga_horaria%>">
+                  <input id="" name="realizado" type="text" style="display: none;" value="<%=lotes[i].data_realizacao%>">
+                  <input id="" name="quantidade" type="text" style="display: none;" value="<%=lotes[i].alunos.length%>">
+                </form>
+                  <i class="material-icons btn-pdf-lote" btnPdfLote="<%=lotes[i].id%>">picture_as_pdf</i>
+                  <i class="material-icons btn-edit" 
+                  id_lote="<%=lotes[i].id%>"
+                  nome="<%=lotes[i].nome%>" 
+                  titulo="<%=lotes[i].titulo%>"
+                  data_realizacao = "<%=lotes[i].data_realizacao%>"
+                  carga_horaria= "<%=lotes[i].carga_horaria%>"
+                  >edit</i>
+                  <i class="material-icons btn-delete" value="<%=lotes[i].id%>">delete</i>
+                  
+              </td>
+            </tr>
+            <%}%>     
+          <%}%>           
+        </tbody>
+      </table>
+</section>
+

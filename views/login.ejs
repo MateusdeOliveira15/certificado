@@ -1,0 +1,12 @@
+<div class="login">
+    <% if(msg) {%>
+        <div class="alert-error"><%=msg%></div>
+    <% }%>
+    <form action="/login" method="POST">
+        <span class="login-title login-item">Login</span>
+        <input class="login-input login-item" name="usuario" type="text" placeholder="Usuário :D" required/>
+        <input class="login-input login-item" name="senha" type="password" placeholder="Senha" required>
+        <span class="link"><a href="cadastro">Não é cadastrado?</a></span>
+        <button  class="login-btn">Entrar</button>
+    </form>
+</div>
